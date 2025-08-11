@@ -1,12 +1,4 @@
-<footer class="footer">
-  <div class="container">
-    <div class="footer__container">
-      <p class="footer__love">{{ site.data.strings.footer.copyright }}</p>
-      <ul class="footer__links">
-        {% for link in site.data.strings.footer.links %}
-        <li class="footer__link"><a href="{{ link.url }}" target="{{ link.target }}">{{ link.title }}</a></li>
-        {% endfor %}
-      </ul>
-    </div>
-  </div>
+<footer class="site-footer footer">
+  <p>© {{ "now" | date: "%Y" }} Whistle Time. ChatTDP es un producto de Whistle Time. Todos los derechos reservados.</p>
+  <p><a href="/terminos">Términos y Condiciones</a> · <a href="/aviso-de-privacidad">Aviso de Privacidad</a></p>
 </footer>

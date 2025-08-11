@@ -3,13 +3,13 @@
 $container-width: 960px;
 $container-padding: 30px;
 
-$primary-color: #5A51FE;
-$secondary-color: #8751FE;
-$text-color: #222;
+$primary-color: #049445; // verde (CTA principales, enlaces)
+$secondary-color: #d02229; // acentos / error / states
+$text-color: #363636; // texto principal
 $link-color: $primary-color;
-$background-color: #F6F8FA;
-$grey-color: #65638f;
-$light-grey-color: #F6F8FA;
+$background-color: #f6f8fa;
+$grey-color: rgba($text-color, 0.72);
+$light-grey-color: rgba($text-color, 0.06);
 
 :root {
   --font-xl: 42px;
@@ -36,9 +36,10 @@ $font-sm: var(--font-sm);
 $font-xs: var(--font-xs);
 $font-xxs: var(--font-xxs);
 
-$system-font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+$system-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 $primary-font-family: $system-font-family;
-$secondary-font-family: 'Heebo', sans-serif;
+$secondary-font-family: "Heebo", sans-serif;
 
 // Mixin
 
@@ -47,7 +48,6 @@ $secondary-font-family: 'Heebo', sans-serif;
   padding: 0 $padding;
   margin: auto;
 }
-
 
 // Global
 
@@ -80,14 +80,17 @@ a {
   }
 }
 
-
 // Shared
 
 .button {
   display: flex;
-  background: linear-gradient(65deg,#DA552F,#ea8e39);
+  background: linear-gradient(
+    65deg,
+    $primary-color,
+    darken($primary-color, 8%)
+  );
   font-family: $secondary-font-family;
-  color:#fff;
+  color: #fff;
   display: inline-flex;
   font-size: $font-xxs;
   letter-spacing: 0px;
@@ -102,23 +105,22 @@ a {
   padding: 16px 32px;
   text-align: center;
   white-space: nowrap;
-  box-shadow: 0 8px 24px rgba(32,43,54,0.12);
+  box-shadow: 0 8px 24px rgba(4, 148, 69, 0.18);
   mix-blend-mode: multiply;
-  transition: all .15s ease;
+  transition: all 0.15s ease;
 
   &:hover {
-    color: #fff;
-    box-shadow: 0 8px 24px rgba(32,43,54,0.25);
+    box-shadow: 0 8px 24px rgba(4, 148, 69, 0.28);
+    transform: translateY(-1px);
   }
 
   &--link {
-    background: rgba(0,0,0,0);
+    background: transparent;
     color: $primary-color;
     box-shadow: none;
 
     &:hover {
-      color: $secondary-color;
-      box-shadow: none;
+      color: darken($primary-color, 8%);
     }
   }
 }
@@ -131,10 +133,10 @@ a {
   @include container($container-padding);
 }
 
-h1, h2 {
+h1,
+h2 {
   font-family: $secondary-font-family;
 }
-
 
 .container-desktop {
   @include container($container-padding);
@@ -168,7 +170,7 @@ h1, h2 {
 
   &__logo-wrapper {
     display: inline-block;
-    background-image: url('/assets/images/ios-mask-border-128.svg');
+    background-image: url("/assets/images/ios-mask-border-128.svg");
     background-size: contain;
     max-width: 250px;
     max-height: 250px;
@@ -187,7 +189,7 @@ h1, h2 {
 
   &__logo {
     border-radius: 22.5%;
-    mask-image: url('/assets/images/ios-mask.svg');
+    mask-image: url("/assets/images/ios-mask.svg");
     mask-size: cover;
     width: 100%;
     height: auto;
@@ -221,13 +223,13 @@ h1, h2 {
   &__screenshot {
     width: 100%;
     border-radius: 16px;
-    box-shadow: 0 12px 48px rgba(17,16,62,0.12);
-    transition: all .3s ease-in-out;
+    box-shadow: 0 12px 48px rgba(17, 16, 62, 0.12);
+    transition: all 0.3s ease-in-out;
     transform: scale(1);
     cursor: pointer;
 
     &:hover {
-      box-shadow: 0 24px 48px rgba(17,16,62,0.12);
+      box-shadow: 0 24px 48px rgba(17, 16, 62, 0.12);
       transform: scale(1.05);
     }
   }
@@ -245,7 +247,7 @@ h1, h2 {
     &--mobile {
       display: none;
     }
-    
+
     @media (max-width: 768px) {
       margin-left: 0;
       margin-bottom: 64px;
@@ -257,7 +259,7 @@ h1, h2 {
 
       &--desktop {
         display: none;
-      }      
+      }
     }
   }
 
@@ -286,7 +288,7 @@ h1, h2 {
         width: 252px * 0.5;
       }
     }
-  
+
     &__button-ios {
       img {
         width: 200px * 0.5;
@@ -313,25 +315,28 @@ h1, h2 {
   }
 
   &__featured {
-
     &-content {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-      grid-column-gap: 32px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 32px;
       align-items: center;
-
-      @media (max-width: 768px) {
-        display: block;
-        padding: 32px;
-      }
     }
-
+    &-company {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+    }
     &-image {
-      width: 100%;
-      margin: auto;
+      max-height: 68px;
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+      display: block;
     }
   }
-
 }
 
 .footer {
@@ -340,6 +345,10 @@ h1, h2 {
 
   a {
     font-size: $font-xs !important;
+    color: $primary-color;
+    &:hover {
+      color: darken($primary-color, 10%);
+    }
   }
 
   &__container {
@@ -369,7 +378,6 @@ h1, h2 {
       margin-right: 8px;
     }
   }
-
 }
 
 .page {
@@ -386,4 +394,21 @@ h1, h2 {
   background-position-x: 20vw !important;
   background-position-y: -10vh !important;
   background-repeat: no-repeat !important;
+}
+
+.card,
+.app__featured-company {
+  background: #fff;
+  border: 1px solid $light-grey-color;
+  box-shadow: 0 6px 20px rgba($text-color, 0.06);
+}
+
+.is-danger,
+.button--danger {
+  background: linear-gradient(
+    65deg,
+    $secondary-color,
+    darken($secondary-color, 8%)
+  );
+  color: #fff;
 }

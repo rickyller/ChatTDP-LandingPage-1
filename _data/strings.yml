@@ -1,16 +1,15 @@
 app:
-  screenshots: Screenshots
-  description: Description
-  featured: Featured in
+  screenshots: Capturas
+  description: Descripción
+  featured: Elaborado por
 
 footer:
-  copyright: Made with ❤️ in Europe 🇪🇺 by <a href="https://www.sandoche.com" target="_blank">Sandoche</a>
+  copyright: © 2025 Whistle Time. ChatTDP es un producto de Whistle Time. Todos los derechos reservados.
   links:
-    - title: Github
-      url: https://github.com/sandoche/Mobile-app-landingpage-template
+    - title: Contactar
+      url: /contact
+    - title: Términos y condiciones
+      url: /terms
       target: _blank
-    - title: Donate
-      url: https://paypal.me/kanbanote
-      target: _blank
-    - title: Privacy
-      url: /privacy
+    - title: Eliminar cuenta
+      url: /delete-account
