@@ -3,20 +3,21 @@ layout: default
 ---
 <header id="inicio" class="app__header container">
   <div class="app__logo-wrapper">
-    <img class="app__logo" src="/assets/images/icon.png" alt="{{ site.data.app.name }} Icon">
+    <img class="app__logo" src="{{ '/assets/images/icon.png' | relative_url }}" alt="{{ site.data.app.name }} Icon">
   </div>
   <div class="app__infos">
     <h1 class="app__name">{{ site.data.app.name }}</h1>
     <p class="app__description">{{ site.data.app.description }}</p>
     <div class="app__buttons app__buttons--desktop">
       {% if site.data.app.android != false %}
-      <a href="{{ site.data.app.android }}" class="app__button-play" target="_blank"><img src="/assets/images/google-play-badge.png" alt="Get on Google Play"></a>
+      <a href="{{ site.data.app.android }}" class="app__button-play" target="_blank" rel="noopener noreferrer">
+        <img src="{{ '/assets/images/google-play-badge.png' | relative_url }}" alt="Get on Google Play">
+      </a>
       {% endif %}
       {% if site.data.app.iOS != false %}
-      <a href="{{ site.data.app.iOS }}" class="app__button-ios" target="_blank"><img src="/assets/images/ios.svg" alt="Get on Appstore"></a>
-      {% endif %}
-      {% if site.data.app.web != false %}
-      <a href="{{ site.data.app.web }}" class="app__button-web" target="_blank"><img src="/assets/images/pwa-badge.png" alt="Go to website"></a>
+      <a href="{{ site.data.app.iOS }}" class="app__button-ios" target="_blank" rel="noopener noreferrer">
+        <img src="{{ '/assets/images/ios.svg' | relative_url }}" alt="Get on App Store">
+      </a>
       {% endif %}
     </div>
   </div>
@@ -24,13 +25,14 @@ layout: default
 
 <div class="app__buttons app__buttons--mobile container">
   {% if site.data.app.android != false %}
-  <a href="{{ site.data.app.android }}" class="app__button-play" target="_blank"><img src="/assets/images/google-play-badge.png" alt="Get on Google Play"></a>
+  <a href="{{ site.data.app.android }}" class="app__button-play" target="_blank" rel="noopener noreferrer">
+    <img src="{{ '/assets/images/google-play-badge.png' | relative_url }}" alt="Get on Google Play">
+  </a>
   {% endif %}
   {% if site.data.app.iOS != false %}
-  <a href="{{ site.data.app.iOS }}" class="app__button-ios" target="_blank"><img src="/assets/images/ios.svg" alt="Get on Appstore"></a>
-  {% endif %}
-  {% if site.data.app.web != false %}
-  <a href="{{ site.data.app.web }}" class="app__button-web" target="_blank"><img src="/assets/images/pwa-badge.png" alt="Go to website"></a>
+  <a href="{{ site.data.app.iOS }}" class="app__button-ios" target="_blank" rel="noopener noreferrer">
+    <img src="{{ '/assets/images/ios.svg' | relative_url }}" alt="Get on App Store">
+  </a>
   {% endif %}
 </div>
 
@@ -41,8 +43,8 @@ layout: default
   <div class="app__screenshots-wrapper container-desktop">
     <div class="app__screenshots-list">
       {% for screenshot in site.data.app.screenshots %}
-      <a href="/assets/images/screenshots/{{ screenshot }}" class="lightbox">
-       <img src="/assets/images/screenshots/{{ screenshot }}" class="app__screenshot">
+      <a href="{{ '/assets/images/screenshots/' | append: screenshot | relative_url }}" class="lightbox">
+        <img src="{{ '/assets/images/screenshots/' | append: screenshot | relative_url }}" class="app__screenshot" alt="Screenshot {{ forloop.index }}">
       </a>
       {% endfor %}
     </div>
@@ -60,8 +62,11 @@ layout: default
   <h2 class="app__section-title">{{ site.data.strings.app.featured }}</h2>
   <div class="app__featured-content">
     {% for company in site.data.app.companies %}
-    <a href="{{ company.url }}" target="_blank" class="app__featured-company">
-     <img src="/assets/images/companies/{{ company.image }}" class="app__featured-image">
+    <a href="{{ company.url }}" target="_blank" rel="noopener noreferrer" class="app__featured-company" aria-label="{{ company.name }}">
+      <img src="{{ '/assets/images/companies/' | append: company.image | relative_url }}" class="app__featured-image" alt="{{ company.name }}">
+      {% if company.name %}
+      <span class="company-name">{{ company.name }}</span>
+      {% endif %}
     </a>
     {% endfor %}
   </div>
