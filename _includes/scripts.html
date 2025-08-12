@@ -15,93 +15,120 @@
 {% endif %}
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    // --- Config ---
-    const navCollapse = document.getElementById('navbarTDP');
-    const navBar = document.querySelector('.navbar.sticky-top');
-    const links = Array.from(document.querySelectorAll('.navbar-nav .nav-link[href^="#"]'));
-    const sections = links
-      .map(a => document.querySelector(a.getAttribute('href')))
-      .filter(Boolean);
+document.addEventListener('DOMContentLoaded', function () {
+  // --- Config ---
+  const navCollapse = document.getElementById('navbarTDP');
+  const navBar = document.querySelector('.navbar.sticky-top');
+  const HOME = "{{ '/' | relative_url }}";           // respeta baseurl
+  const OFFSET = (navBar?.offsetHeight || 0) + 8;    // despeje por navbar
 
-    const OFFSET = (navBar?.offsetHeight || 0) + 8; // despeje para sticky navbar
+  // Todos los links del navbar (no solo hashes)
+  const links = Array.from(document.querySelectorAll('.navbar-nav .nav-link'));
 
-    // 1) Cerrar el collapse al hacer clic en un link (móvil)
-    links.forEach(a => {
-      a.addEventListener('click', () => {
-        const inst = window.bootstrap?.Collapse?.getInstance(navCollapse);
-        if (inst) inst.hide();
-      });
+  // Utilidades
+  const norm = (p) => (p || '').replace(/\/+$/, '/') || '/';
+  const onHome = norm(location.pathname) === norm(HOME);
+  const getHash = (href) => {
+    if (!href) return '';
+    const i = href.indexOf('#');
+    return i >= 0 ? href.slice(i + 1) : '';
+  };
+
+  // --- 1) Cerrar el collapse en móvil siempre ---
+  links.forEach(a => {
+    a.addEventListener('click', () => {
+      const inst = window.bootstrap?.Collapse?.getInstance(navCollapse);
+      if (inst) inst.hide();
     });
+  });
 
-    // 2) Scroll suave con offset (sin salto brusco)
-    links.forEach(a => {
-      a.addEventListener('click', function (e) {
-        const id = this.getAttribute('href');
-        if (!id || !id.startsWith('#')) return;
-        const target = document.querySelector(id);
+  // --- 2) Scroll suave SOLO si el destino está en esta misma página ---
+  links.forEach(a => {
+    a.addEventListener('click', function (e) {
+      const href = this.getAttribute('href') || '';
+      const isHashOnly = href.startsWith('#');           // "#screenshots"
+      const isHomeHash = href.startsWith(HOME + '#');    // "/#screenshots"
+      const targetId = getHash(href);
+
+      // Caso A: link con hash a esta misma página
+      if ((isHashOnly && onHome) || (isHomeHash && onHome)) {
+        const target = document.getElementById(targetId);
         if (!target) return;
-
         e.preventDefault();
         const top = Math.max(0, target.getBoundingClientRect().top + window.scrollY - OFFSET);
         window.scrollTo({ top, behavior: 'smooth' });
-        // Actualiza hash sin brincos
-        history.pushState(null, '', id);
-      });
+        history.pushState(null, '', '#' + targetId);
+        return;
+      }
+
+      // Caso B: link "#..." pero NO estamos en Home -> enviar a Home#...
+      if (isHashOnly && !onHome) {
+        e.preventDefault();
+        window.location.assign(HOME + href);
+        return;
+      }
+
+      // Caso C: link "/#..." desde otra página -> dejar navegar normal a Home#...
+      // (no prevenimos el default)
     });
+  });
 
-    // 3) Marcar link activo según la sección visible
-    function setActive(id) {
-      links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === id));
-    }
+  // --- 3) Marcar link activo según sección visible (solo si hay secciones en esta página) ---
+  function setActiveByHash(hashId) {
+    // hashId: "#screenshots"
+    links.forEach(a => {
+      const href = a.getAttribute('href') || '';
+      const h = '#' + getHash(href);
+      const match = (h === hashId) || (href === (HOME + hashId));
+      a.classList.toggle('active', match);
+    });
+  }
 
-    // IntersectionObserver para determinar sección activa
+  // Construimos lista de secciones presentes en ESTA página, según los ids referenciados por el navbar
+  const sectionEls = links
+    .map(a => document.getElementById(getHash(a.getAttribute('href') || '')))
+    .filter(Boolean);
+
+  if (sectionEls.length) {
     const observer = new IntersectionObserver((entries) => {
-      // Elegimos la entrada más visible
-      let winner = null;
-      let maxRatio = 0;
+      let winner = null, maxRatio = 0;
       entries.forEach(entry => {
         if (entry.isIntersecting && entry.intersectionRatio >= maxRatio) {
           maxRatio = entry.intersectionRatio;
           winner = entry;
         }
       });
-      if (winner) {
-        setActive('#' + winner.target.id);
-      }
+      if (winner?.target?.id) setActiveByHash('#' + winner.target.id);
     }, {
       root: null,
-      // Ajustamos para que la sección cuente como "activa" cuando su top pase bajo la navbar
       rootMargin: `-${OFFSET}px 0px -50% 0px`,
       threshold: [0, 0.25, 0.5, 0.75, 1]
     });
 
-    sections.forEach(sec => {
-      if (!sec.id) return;
-      observer.observe(sec);
-    });
+    sectionEls.forEach(sec => observer.observe(sec));
 
-    // Estado inicial (por si cargan con hash o ya están scrolleados)
-    (function initActive() {
-      const current = links.find(a => a.getAttribute('href') === location.hash);
-      if (current) {
-        setActive(location.hash);
-      } else if (sections[0]?.id) {
-        setActive('#' + sections[0].id);
-      }
-    })();
-  });
+    // Estado inicial
+    if (onHome && location.hash) {
+      setActiveByHash(location.hash);
+    } else if (onHome && sectionEls[0]?.id) {
+      setActiveByHash('#' + sectionEls[0].id);
+    }
+  }
 
-  // --- Barra de progreso scroll ---
-const progressBar = document.getElementById('progressBar');
-window.addEventListener('scroll', () => {
-  const scrollTop = window.scrollY;
-  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const scrolled = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-  progressBar.style.width = scrolled + '%';
+  // --- 4) Barra de progreso de scroll ---
+  const progressBar = document.getElementById('progressBar');
+  if (progressBar) {
+    const updateProgress = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrolled = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      progressBar.style.width = scrolled + '%';
+    };
+    updateProgress();
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('resize', updateProgress);
+  }
 });
-
-
 </script>
 
 </body>

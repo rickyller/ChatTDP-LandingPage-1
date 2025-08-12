@@ -1,0 +1,25 @@
+/* terms.scss */
+/* Estilos exclusivos para la vista de Términos y Condiciones */
+.terms-page {
+  .card {
+    border-radius: 1rem;
+    padding: 2rem;
+    background-color: #fff; // o #000 si usas dark mode
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  .app-logo {
+    width: 96px;
+    height: 96px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+  }
+
+  .btn-terms {
+    border-radius: 0.75rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 0.75rem 2rem;
+  }
+}

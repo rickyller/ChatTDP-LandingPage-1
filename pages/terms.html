@@ -1,0 +1,29 @@
+---
+layout: default
+title: Términos y Condiciones
+permalink: /terms/
+---
+
+<section class="terms-page container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <header class="text-center mb-4">
+        <h1 class="h3 m-0">{{ page.title }}</h1>
+        <p class="text-muted mt-2">Consulta el documento oficial en PDF.</p>
+      </header>
+
+      <div class="card border-0 shadow-sm p-4 text-center">
+        <img src="{{ '/assets/images/icon.png' | relative_url }}" alt="{{ site.data.app.name }} Logo" class="mx-auto d-block mb-3" style="width:96px;height:96px;object-fit:contain;"/>
+
+        <h2 class="h5 mb-3">{{ site.data.app.name }}</h2>
+
+        <a class="btn btn-success btn-lg px-4" href="{{ site.data.app.terms_pdf | relative_url }}" target="_blank" rel="noopener noreferrer" aria-label="Abrir Términos y Condiciones en PDF">
+          Conoce nuestros Términos y Condiciones</a>
+        <p class="mt-3 mb-0">
+          También puedes
+          <a href="{{ site.data.app.terms_pdf | relative_url }}" target="_blank" rel="noopener noreferrer">abrir el PDF en una nueva pestaña</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

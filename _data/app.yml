@@ -29,3 +29,7 @@ producthunt: https://telegra.ph/Replace-this-link-07-23
 companies:
   - url: https://whistletime.com.mx/
     image: icon_whistle_time.png
+
+terms_pdf: /assets/docs/terminos-y-condiciones-chattdp.pdf
+privacy_pdf: /assets/docs/aviso-de-privacidad-chattdp.pdf
+

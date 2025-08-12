@@ -1,4 +1,15 @@
 <footer class="site-footer footer">
-  <p>© {{ "now" | date: "%Y" }} Whistle Time. ChatTDP es un producto de Whistle Time. Todos los derechos reservados.</p>
-  <p><a href="/terminos">Términos y Condiciones</a> · <a href="/aviso-de-privacidad">Aviso de Privacidad</a></p>
+  <div class="container-fluid px-3 px-md-4">
+    <div class="d-flex flex-column align-items-start gap-2">
+      <p class="mb-0">
+        © {{ "now" | date: "%Y" }} Whistle Time. ChatTDP es un producto de Whistle Time.
+        Todos los derechos reservados.
+      </p>
+      <p class="mb-0">
+        <a href="{{ '/terms/' | relative_url }}">Términos y Condiciones</a> ·
+        <a href="{{ '/privacy/' | relative_url }}">Aviso de Privacidad</a> ·
+        <a href="{{ '/delete_account/' | relative_url }}">Eliminar Cuenta</a>
+      </p>
+    </div>
+  </div>
 </footer>

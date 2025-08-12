@@ -340,7 +340,7 @@ h2 {
 }
 
 .footer {
-  padding: 16px 0;
+  padding: 16px 0px; // antes solo tenías 16px 0; agregamos padding lateral
   font-size: $font-xs !important;
 
   a {
