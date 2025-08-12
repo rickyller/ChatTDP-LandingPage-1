@@ -44,7 +44,8 @@ layout: default
     <div class="app__screenshots-list">
       {% for screenshot in site.data.app.screenshots %}
       <a href="{{ '/assets/images/screenshots/' | append: screenshot | relative_url }}" class="lightbox">
-        <img src="{{ '/assets/images/screenshots/' | append: screenshot | relative_url }}" class="app__screenshot" alt="Screenshot {{ forloop.index }}">
+        <img src="{{ '/assets/images/screenshots/' | append: screenshot | relative_url }}" class="app__screenshot"
+          alt="Screenshot {{ forloop.index }}">
       </a>
       {% endfor %}
     </div>
@@ -62,8 +63,10 @@ layout: default
   <h2 class="app__section-title">{{ site.data.strings.app.featured }}</h2>
   <div class="app__featured-content">
     {% for company in site.data.app.companies %}
-    <a href="{{ company.url }}" target="_blank" rel="noopener noreferrer" class="app__featured-company" aria-label="{{ company.name }}">
-      <img src="{{ '/assets/images/companies/' | append: company.image | relative_url }}" class="app__featured-image" alt="{{ company.name }}">
+    <a href="{{ company.url }}" target="_blank" rel="noopener noreferrer" class="app__featured-company"
+      aria-label="{{ company.name }}">
+      <img src="{{ '/assets/images/companies/' | append: company.image | relative_url }}" class="app__featured-image"
+        alt="{{ company.name }}">
       {% if company.name %}
       <span class="company-name">{{ company.name }}</span>
       {% endif %}

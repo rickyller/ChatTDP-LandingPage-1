@@ -1,0 +1,122 @@
+---
+layout: default
+title: Eliminar Cuenta
+permalink: /delete_account/
+---
+
+<section class="terms-page container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <header class="text-center mb-4">
+        <h1 class="h3 m-0">{{ page.title }}</h1>
+        <p class="text-muted mt-2">
+          Solicita la eliminación permanente de tu cuenta y datos asociados.
+        </p>
+      </header>
+
+      <div class="card border-0 shadow-sm p-4">
+        <div class="text-center">
+          <img src="{{ '/assets/images/icon.png' | relative_url }}" alt="{{ site.data.app.name | default: 'ChatTDP' }} Logo" class="mx-auto d-block mb-3" style="width:96px;height:96px;object-fit:contain;"/><h2 class="h5 mb-4">{{ site.data.app.name | default: 'ChatTDP' }}</h2>
+        </div>
+
+        <!-- Opción 1: por correo -->
+        <div class="mb-4">
+          <h3 class="h6">Opción 1: Solicitud por correo</h3><p class="mb-2">Envíanos un correo desde el email asociado a tu cuenta:</p><a class="btn btn-outline-secondary" href="mailto:{{ site.data.app.support_email | default: 'soporte@whistletime.com.mx' }}?subject=Solicitud%20de%20eliminaci%C3%B3n%20de%20cuenta%20-%20{{ site.data.app.name | default: 'ChatTDP' }}&body=Hola%2C%20quiero%20eliminar%20mi%20cuenta%20asociada%20a%20este%20correo.%20Confirmo%20que%20comprendo%20que%20la%20eliminaci%C3%B3n%20es%20permanente." rel="noopener noreferrer">Solicitar por correo</a>
+        </div>
+
+        <hr class="my-4"/>
+
+        <!-- Opción 2: Formulario -->
+        <div>
+          <h3 class="h6">Opción 2: Formulario en línea</h3><p class="mb-3">Completa el siguiente formulario para procesar tu solicitud:</p><form id="deleteForm" action="https://formspree.io/f/mkgzyqwl" method="POST" class="vstack gap-3" novalidate>
+            <!-- Email -->
+            <div>
+              <label for="email" class="form-label">Correo asociado a la cuenta</label>
+              <input type="email" id="email" name="email" class="form-control" required autocomplete="email"/>
+            </div>
+
+            <!-- Motivo (opcional) -->
+            <div>
+              <label for="reason" class="form-label">Motivo (opcional)</label>
+              <textarea id="reason" name="reason" class="form-control" rows="3" placeholder="Opcional"></textarea>
+            </div>
+
+            <!-- Confirmación -->
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="yes" id="confirm" name="confirm" required>
+              <label class="form-check-label" for="confirm">
+                Confirmo que la eliminación es permanente y no reversible.
+              </label>
+            </div>
+
+            <!-- Honeypot anti-bots -->
+            <div style="position:absolute;left:-5000px;" aria-hidden="true">
+              <label for="website">No llenar</label>
+              <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+            </div>
+
+            <!-- Metadatos Formspree -->
+            <input type="hidden" name="_subject" value="Solicitud de eliminación de cuenta – ChatTDP" />
+            <input type="hidden" name="_template" value="table" />
+
+            <button type="submit" class="btn btn-success btn-lg align-self-start">
+              Enviar solicitud
+            </button>
+
+            <p id="deleteMsg" class="text-muted small m-0" hidden>
+              Gracias. Hemos recibido tu solicitud y te contactaremos por correo.
+            </p>
+
+            <!-- Nota legal -->
+            <p class="text-muted small m-0">
+              Al enviar la solicitud, procesaremos la eliminación conforme a nuestro
+              <a href="{{ '/privacy/' | relative_url }}">Aviso de Privacidad</a>.
+              Podrías recibir un correo para confirmar tu identidad.
+            </p>
+          </form>
+        </div>
+      </div>
+
+      <p class="text-muted small mt-3 mb-0">
+        ¿Problemas con el formulario? Escríbenos a
+        <a href="mailto:{{ site.data.app.support_email | default: 'soporte@whistletime.com.mx' }}">
+          {{ site.data.app.support_email | default: 'soporte@whistletime.com.mx' }}
+        </a>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+document.getElementById('deleteForm')?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const form = e.currentTarget;
+  const msg = document.getElementById('deleteMsg');
+
+  try {
+    const resp = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+    if (resp.ok) {
+      form.reset();
+      msg.hidden = false;
+      msg.classList.remove('text-danger');
+      msg.textContent = 'Solicitud enviada con éxito. Redirigiendo...';
+      
+      // Espera breve y redirección
+      setTimeout(() => {
+        window.location.href = '{{ "/" | relative_url }}';
+      }, 1500);
+    } else {
+      throw new Error();
+    }
+  } catch {
+    msg.hidden = false;
+    msg.classList.add('text-danger');
+    msg.textContent = 'Error al enviar. Inténtelo de nuevo.';
+  }
+});
+</script>
+

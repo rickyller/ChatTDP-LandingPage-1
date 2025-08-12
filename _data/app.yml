@@ -33,3 +33,5 @@ companies:
 terms_pdf: /assets/docs/terminos-y-condiciones-chattdp.pdf
 privacy_pdf: /assets/docs/aviso-de-privacidad-chattdp.pdf
 
+support_email: soporte@whistletime.com.mx
+delete_form_endpoint: https://formspree.io/f/mkgzyqwl
