@@ -12,6 +12,7 @@ module.exports = Merge(CommonConfig, {
     filename: '[name]-[hash].bundle.js',
     path: path.resolve('assets'),
     publicPath: '/assets/',
+    clean: false // aseguramos que Webpack no limpie automáticamente
   },
   optimization: {
     minimize: true,
@@ -22,7 +23,16 @@ module.exports = Merge(CommonConfig, {
     })]
   },
   plugins: [
-    new CleanWebpackPlugin({ cleanOnceBeforeBuildPatterns: ['assets'], verbose: true }),
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: [
+        '**/*',
+        '!images/**',
+        '!images',
+        '!docs/**',
+        '!docs'
+      ],
+      verbose: true
+    }),
     new webpack.LoaderOptionsPlugin({
       minimize: true,
       debug: false,

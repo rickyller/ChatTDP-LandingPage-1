@@ -14,10 +14,10 @@ module.exports = {
       logo: './icon.png',
       manifest: './config/manifest.json',
     }),
-    new HtmlWebpackPlugin({
-      template: './_src/template/default.html',
-      filename: '../_layouts/default.html',
-    }),
+    //new HtmlWebpackPlugin({
+      //template: './_src/template/default.html',
+      //filename: '../_layouts/default.html',
+    //}),
     new MiniCssExtractPlugin(),
     new CopyWebpackPlugin({
       patterns:[
