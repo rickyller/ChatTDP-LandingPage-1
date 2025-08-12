@@ -1,0 +1,61 @@
+.navbar {
+  background-color: #000 !important; // Fondo negro
+  .navbar-brand {
+    font-weight: bold;
+    color: #fff;
+  }
+  .nav-link {
+    color: #ddd;
+    &:hover {
+      color: #fff;
+    }
+  }
+  .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,..."); // Personaliza el ícono
+  }
+  .navbar .nav-link.active {
+    color: #049445 !important;
+    font-weight: 600; /* opcional */
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  :target {
+    scroll-margin-top: 80px;
+  } /* ajusta 80px a la altura real de tu navbar */
+}
+
+body.dark-mode {
+  .navbar {
+    background-color: #000 !important;
+  }
+
+  .navbar-brand {
+    font-weight: bold;
+    color: #fff;
+  }
+
+  .nav-link {
+    color: #ddd;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,...");
+  }
+
+  .navbar .nav-link.active {
+    color: #049445 !important;
+    font-weight: 600;
+  }
+}

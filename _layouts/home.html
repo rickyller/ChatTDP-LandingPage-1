@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-<header class="app__header container">
+<header id="inicio" class="app__header container">
   <div class="app__logo-wrapper">
     <img class="app__logo" src="/assets/images/icon.png" alt="{{ site.data.app.name }} Icon">
   </div>
@@ -21,6 +21,7 @@ layout: default
     </div>
   </div>
 </header>
+
 <div class="app__buttons app__buttons--mobile container">
   {% if site.data.app.android != false %}
   <a href="{{ site.data.app.android }}" class="app__button-play" target="_blank"><img src="/assets/images/google-play-badge.png" alt="Get on Google Play"></a>
@@ -32,7 +33,8 @@ layout: default
   <a href="{{ site.data.app.web }}" class="app__button-web" target="_blank"><img src="/assets/images/pwa-badge.png" alt="Go to website"></a>
   {% endif %}
 </div>
-<section class="app__screenshots app__section">
+
+<section id="screenshots" class="app__screenshots app__section">
   <div class="container">
     <h2 class="app__section-title">{{ site.data.strings.app.screenshots }}</h2>
   </div>
@@ -46,13 +48,15 @@ layout: default
     </div>
   </div>
 </section>
-<section class="app__fulldescription app__section container">
+
+<section id="descripcion" class="app__fulldescription app__section container">
   <h2 class="app__section-title">{{ site.data.strings.app.description }}</h2>
   <div class="app__fulldescription-content">
     <p>{{ site.data.app.full_description }}</p>
   </div>
 </section>
-<section class="app__featured app__section container">
+
+<section id="featured" class="app__featured app__section container">
   <h2 class="app__section-title">{{ site.data.strings.app.featured }}</h2>
   <div class="app__featured-content">
     {% for company in site.data.app.companies %}

@@ -1,10 +1,22 @@
 name: ChatTDP
-description: Tu asistente virtual para cualquier duda de la TDP Varonil y Femenil
-full_description: 'Tu asistente virtual para cualquier duda de la TDP Varonil y Femenil<br>
-<br>With a lot of features:
-<br>- ChatTDP es un asistente virtual que te ayuda a resolver cualquier duda relacionada con la TDP Varonil y Femenil.
-<br>- ChatTDP está disponible en múltiples plataformas, incluyendo Android, iOS y web.
-<br>- ChatTDP ofrece una interfaz fácil de usar y respuestas rápidas a tus preguntas.'
+description: "Tu asistente virtual para resolver cualquier duda de la Liga TDP Varonil y Femenil"
+full_description: >
+  <p>ChatTDP es tu asistente virtual especializado en la Liga TDP, tanto en su rama Varonil como Femenil.</p>
+
+  <p>Responde de forma rápida, precisa y sencilla cualquier pregunta sobre el reglamento, procedimientos y situaciones de competencia.</p>
+
+  <p><strong>Con ChatTDP podrás:</strong></p>
+  <ul>
+    <li>Consultar dudas del reglamento de competencia en segundos.</li>
+    <li>Conocer reglas como la tolerancia de la ambulancia y la normativa sobre responsables de banca.</li>
+    <li>Generar oficios/solicitudes (p. ej., para nombrar responsable de banca).</li>
+    <li>Acceder desde Android y iOS.</li>
+    <li>Usar una interfaz intuitiva con respuestas rápidas y actualizadas.</li>
+  </ul>
+
+  <p>¿Sin responsable de banca? ¿Dudas sobre sustituciones u obligaciones de equipo? ¿Necesitas un oficio oficial?<br>
+  ChatTDP puede ayudarte con eso… y más.</p>
+
 android: https://telegra.ph/Replace-this-link-07-23
 iOS: https://telegra.ph/Replace-this-link-07-23
 web: https://telegra.ph/Replace-this-link-07-23

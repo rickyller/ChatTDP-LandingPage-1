@@ -13,3 +13,85 @@
 {% if site.github %}
 {% include github-banner.html %}
 {% endif %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // --- Config ---
+    const navCollapse = document.getElementById('navbarTDP');
+    const navBar = document.querySelector('.navbar.sticky-top');
+    const links = Array.from(document.querySelectorAll('.navbar-nav .nav-link[href^="#"]'));
+    const sections = links
+      .map(a => document.querySelector(a.getAttribute('href')))
+      .filter(Boolean);
+
+    const OFFSET = (navBar?.offsetHeight || 0) + 8; // despeje para sticky navbar
+
+    // 1) Cerrar el collapse al hacer clic en un link (móvil)
+    links.forEach(a => {
+      a.addEventListener('click', () => {
+        const inst = window.bootstrap?.Collapse?.getInstance(navCollapse);
+        if (inst) inst.hide();
+      });
+    });
+
+    // 2) Scroll suave con offset (sin salto brusco)
+    links.forEach(a => {
+      a.addEventListener('click', function (e) {
+        const id = this.getAttribute('href');
+        if (!id || !id.startsWith('#')) return;
+        const target = document.querySelector(id);
+        if (!target) return;
+
+        e.preventDefault();
+        const top = Math.max(0, target.getBoundingClientRect().top + window.scrollY - OFFSET);
+        window.scrollTo({ top, behavior: 'smooth' });
+        // Actualiza hash sin brincos
+        history.pushState(null, '', id);
+      });
+    });
+
+    // 3) Marcar link activo según la sección visible
+    function setActive(id) {
+      links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === id));
+    }
+
+    // IntersectionObserver para determinar sección activa
+    const observer = new IntersectionObserver((entries) => {
+      // Elegimos la entrada más visible
+      let winner = null;
+      let maxRatio = 0;
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.intersectionRatio >= maxRatio) {
+          maxRatio = entry.intersectionRatio;
+          winner = entry;
+        }
+      });
+      if (winner) {
+        setActive('#' + winner.target.id);
+      }
+    }, {
+      root: null,
+      // Ajustamos para que la sección cuente como "activa" cuando su top pase bajo la navbar
+      rootMargin: `-${OFFSET}px 0px -50% 0px`,
+      threshold: [0, 0.25, 0.5, 0.75, 1]
+    });
+
+    sections.forEach(sec => {
+      if (!sec.id) return;
+      observer.observe(sec);
+    });
+
+    // Estado inicial (por si cargan con hash o ya están scrolleados)
+    (function initActive() {
+      const current = links.find(a => a.getAttribute('href') === location.hash);
+      if (current) {
+        setActive(location.hash);
+      } else if (sections[0]?.id) {
+        setActive('#' + sections[0].id);
+      }
+    })();
+  });
+</script>
+
+</body>
+</html>
