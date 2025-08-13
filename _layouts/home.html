@@ -40,17 +40,16 @@ layout: default
   <div class="container">
     <h2 class="app__section-title">{{ site.data.strings.app.screenshots }}</h2>
   </div>
+
   <div class="app__screenshots-wrapper container-desktop">
     <div class="app__screenshots-list">
       {% for screenshot in site.data.app.screenshots %}
-      <a href="{{ '/assets/images/screenshots/' | append: screenshot | relative_url }}" class="lightbox">
-        <img src="{{ '/assets/images/screenshots/' | append: screenshot | relative_url }}" class="app__screenshot"
-          alt="Screenshot {{ forloop.index }}">
-      </a>
+<a href="{{ '/assets/images/screenshots/' | append: screenshot | relative_url }}" class="glightbox" data-gallery="screens"> <img src="{{ '/assets/images/screenshots/' | append: screenshot | relative_url }}" class="app__screenshot" alt="Captura {{ forloop.index }} de ChatTDP" loading="lazy"></a>
       {% endfor %}
     </div>
   </div>
 </section>
+
 
 <section id="description" class="app__fulldescription app__section container">
   <h2 class="app__section-title">{{ site.data.strings.app.description }}</h2>
