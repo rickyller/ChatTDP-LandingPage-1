@@ -1,61 +1,32 @@
-.navbar {
-  background-color: #000 !important; // Fondo negro
-  .navbar-brand {
-    font-weight: bold;
-    color: #fff;
-  }
-  .nav-link {
-    color: #dddddd;
-    &:hover {
-      color: #fff;
-    }
-  }
-  .navbar-toggler {
-    border-color: rgba(255, 255, 255, 0.3);
-  }
-  .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,..."); // Personaliza el ícono
-  }
-  .navbar .nav-link.active {
-    color: #049445 !important;
-    font-weight: 600; /* opcional */
-  }
-  html {
-    scroll-behavior: smooth;
-  }
-  :target {
-    scroll-margin-top: 80px;
-  } /* ajusta 80px a la altura real de tu navbar */
-}
-
-body.dark-mode {
-  .navbar {
-    background-color: #000 !important;
-  }
+/* Navbar propia (no tocar .navbar global) */
+.app-navbar {
+  background-color: #049445; // verde por defecto
 
   .navbar-brand {
-    font-weight: bold;
+    font-weight: 700;
     color: #fff;
   }
 
   .nav-link {
-    color: #ddd;
-
-    &:hover {
-      color: #fff;
-    }
+    color: #fff;
+    &:hover { color: #ddd; }
+    &.active { color: #fff; font-weight: 600; }
   }
 
   .navbar-toggler {
-    border-color: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255,255,255,.3);
   }
-
-  .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,...");
-  }
-
-  .navbar .nav-link.active {
-    color: #049445 !important;
-    font-weight: 600;
-  }
+  // Si el icono del toggler se ve oscuro, descomenta:
+  // .navbar-toggler-icon { filter: invert(1) grayscale(1) brightness(2); }
 }
+
+/* Modo oscuro (mantenemos verde) */
+body.dark-mode .app-navbar {
+  background-color: #049445;
+  .navbar-brand { color: #fff; font-weight: 700; }
+  .nav-link { color: #ddd; &:hover { color: #fff; } &.active { color: #fff; font-weight: 600; } }
+}
+
+/* Utilidades globales */
+html { scroll-behavior: smooth; }
+:target { scroll-margin-top: 80px; }
