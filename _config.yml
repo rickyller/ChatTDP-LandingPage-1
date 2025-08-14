@@ -1,54 +1,61 @@
-### Welcome to Jekyll Webpack Boilerplate
-#
-# This config file contains the config of your webpages
-# You may also want to update /config/webpack.pwa.js in case you want to generate a Progressive Web App
+# --- Sitio ---
+title: "ChatTDP"
+description: "Tu asistente virtual para resolver cualquier duda de la Liga TDP Varonil y Femenil"
+email: soporte@whistletime.com.mx
 
-title: ChatTDP
-email: contact@sandoche.com
-description: Free to use static landing page template to showcase your mobile app
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://mobileapplandingpage.learn.uno" # the base hostname & protocol for your site, e.g. http://example.com
-theme_color: '#efeeff'
-twitter_username: sandochee
-github_username:  sandoche
-author: Sandoche Adittane
-logo: assets/images/large-logo.png
+# IMPORTANTE: cambia esta línea cuando muevas de dominio
+# Ejemplos:
+#   producción con subdominio: https://chattdp.whistletime.com.mx
+#   producción en dominio raíz: https://whistletime.com.mx
+#   (en previews de Cloudflare no pasa nada si queda así; usa siempre | relative_url en templates)
+url: "https://chattdp.pages.dev"
+baseurl: ""   # vacío si sirves en raíz o subdominio directo
+
+theme_color: "#049445"   # verde identidad
+logo: assets/images/icon.png
+
+languages: ["es"]
+ampdir: amp    # si no usas AMP, puedes quitar esta línea
+
+# Social (para jekyll-seo-tag)
 twitter:
-  username: sandochee
+  username: whistletime   # cámbialo si aplica
 social:
-  name: Sandoche Adittane
+  name: "Whistle Time"
   links:
-    - https://twitter.com/sandochee
-    - https://www.facebook.com/sandoche
-    - https://www.linkedin.com/in/sandoche
-    - https://plus.google.com/+SandocheADITTANE
-    - https://github.com/sandoche
+    - https://whistletime.com.mx
 
-languages: ["en"]
-ampdir: amp
+# SEO canónico y URLs limpias
+permalink: pretty
 
-github: https://github.com/sandoche/Mobile-app-landingpage-template
-
-### Google webmaster tools, Google Analytics, Doorbell and Cookie consent uncomment and put the API key
-#webmaster_verifications:
-#  google: verification_code
-#google_analytics: UA-XXXXXXXXX-X
-#doorbell:
-#  id: doorbell_id
-#  appKey: doorbell_appKey
-
-#cookie_consent: true
-
-### Build settings
+# --- Plugins ---
+# Si te falla la build en Cloudflare, comenta los que no uses (p. ej. amp-jekyll u octopress-minify-html)
 markdown: kramdown
 plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
-  - octopress-minify-html
-  - amp-jekyll
+  - octopress-minify-html   # si da error, comenta esta línea
+  - amp-jekyll              # si no usas AMP, comenta esta línea
 
-### Exclude from processing.
+# --- Defaults útiles ---
+defaults:
+  - scope:
+      path: ""          # todo el sitio
+    values:
+      lang: "es"        # <html lang="es">
+      image: "/assets/images/icon.png"   # imagen por defecto para og:image
+      layout: default
+
+# --- Enlaces del proyecto (opcional, solo si todavía los usas en algún include) ---
+github: https://github.com/sandoche/Mobile-app-landingpage-template
+
+# --- Analytics / Webmaster (opcional) ---
+# webmaster_verifications:
+#   google: TU_CODIGO
+# google_analytics: G-XXXXXXXXXX
+
+# --- Excluir del build ---
 exclude:
   - Gemfile
   - Gemfile.lock
