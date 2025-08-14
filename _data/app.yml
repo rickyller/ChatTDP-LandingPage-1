@@ -1,21 +1,23 @@
 name: ChatTDP
-description: "Tu asistente virtual para resolver cualquier duda de la Liga TDP Varonil y Femenil"
+description: "Asistente virtual para equipos, árbitros y aficionados de la Liga TDP Varonil y Femenil."
 full_description: >
-  <p>ChatTDP es tu asistente virtual especializado en la Liga TDP, tanto en su rama Varonil como Femenil.</p>
+  <p><strong>ChatTDP</strong> es tu asistente virtual especializado en la Liga TDP, diseñado para responder cualquier duda de forma rápida y confiable.</p>
 
-  <p>Responde de forma rápida, precisa y sencilla cualquier pregunta sobre el reglamento, procedimientos y situaciones de competencia.</p>
+  <p>Consulta reglas, procedimientos y situaciones de competencia sin buscar en documentos extensos. Disponible para la rama Varonil y Femenil.</p>
 
-  <p><strong>Con ChatTDP podrás:</strong></p>
+  <p><strong>Con ChatTDP puedes:</strong></p>
   <ul>
-    <li>Consultar dudas del reglamento de competencia en segundos.</li>
-    <li>Conocer reglas como la tolerancia de la ambulancia y la normativa sobre responsables de banca.</li>
-    <li>Generar oficios/solicitudes (p. ej., para nombrar responsable de banca).</li>
-    <li>Acceder desde Android y iOS.</li>
-    <li>Usar una interfaz intuitiva con respuestas rápidas y actualizadas.</li>
+    <li>📚 Consultar el reglamento de competencia en segundos.</li>
+    <li>🚑 Conocer normas como la tolerancia de ambulancia o sobre situaciones atípicas.</li>
+    <li>📝 Generar oficios oficiales (por ejemplo, nombrar responsable de banca).</li>
+    <li>📱 Acceder desde Android, iOS.</li>
+    <li>⚡ Usar una interfaz rápida, intuitiva y siempre actualizada.</li>
   </ul>
 
-  <p>¿Sin responsable de banca? ¿Dudas sobre sustituciones u obligaciones de equipo? ¿Necesitas un oficio oficial?<br>
-  ChatTDP puede ayudarte con eso… y más.</p>
+  <p>¿Sin responsable de banca? ¿Dudas sobre sustituciones u obligaciones? ¿Necesitas un oficio oficial?<br>
+  ChatTDP lo resuelve en segundos.</p>
+
+  <p><strong>Olvídate de buscar por palabras en PDFs:</strong> con ChatTDP basta con preguntarle al asistente virtual, incluso sin acentos o con faltas de ortografía, y obtendrás la respuesta al instante.</p>
 
 android: https://telegra.ph/Replace-this-link-07-23
 iOS: https://telegra.ph/Replace-this-link-07-23

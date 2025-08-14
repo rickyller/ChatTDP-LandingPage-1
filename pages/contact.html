@@ -1,0 +1,113 @@
+---
+layout: default
+title: Contacto
+permalink: /contact/
+---
+
+<section class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <!-- Hero -->
+      <div class="d-flex align-items-center gap-3 mb-4">
+        <img src="{{ '/assets/images/companies/icon_whistle_time.png' | relative_url }}" alt="Whistle Time" width="64" height="64" class="rounded shadow-sm" loading="lazy"/>
+        <div>
+          <h1 class="h3 mb-1">Contacto</h1>
+          <p class="mb-0 text-muted">¿Dudas, soporte o propuestas? Estamos para ayudarte.</p>
+        </div>
+      </div>
+
+      <!-- Cards -->
+      <div class="row g-3">
+        <div class="col-md-6">
+          <div class="card shadow-sm h-100">
+            <div class="card-body">
+              <h2 class="h5">Correo</h2>
+              <p class="mb-2">
+                <a href="mailto:admin@whistletime.com.mx">admin@whistletime.com.mx</a>
+              </p>
+              <a class="btn btn-success" href="mailto:admin@whistletime.com.mx">Escribir correo</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="card shadow-sm h-100">
+            <div class="card-body">
+              <h2 class="h5">Teléfonos</h2>
+              <ul class="list-unstyled mb-3">
+                <li class="mb-1">📞 <a href="tel:+523322206205">33 2220 6205</a></li>
+                <li>📞 <a href="tel:+523331018527">33 3101 8527</a></li>
+              </ul>
+              <div class="d-flex gap-2 flex-wrap">
+                <a class="btn btn-outline-success" target="_blank" rel="noopener"
+                   href="https://wa.me/523322206205">WhatsApp 33 2220 6205</a>
+                <a class="btn btn-outline-success" target="_blank" rel="noopener"
+                   href="https://wa.me/523331018527">WhatsApp 33 3101 8527</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="card shadow-sm h-100">
+            <div class="card-body">
+              <h2 class="h5">Sitio web</h2>
+              <p class="mb-2">
+                <a href="https://whistletime.com.mx" target="_blank" rel="noopener">
+                  whistletime.com.mx
+                </a>
+              </p>
+              <a class="btn btn-dark" href="https://whistletime.com.mx" target="_blank" rel="noopener">
+                Visitar sitio
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mensaje rápido -->
+        <div class="col-md-6">
+          <div class="card shadow-sm h-100">
+            <div class="card-body">
+              <h2 class="h5">Mensaje rápido</h2>
+              <p class="text-muted mb-3">Abre tu cliente de correo con el asunto prellenado.</p>
+              <a class="btn btn-primary"
+                 href="mailto:admin@whistletime.com.mx?subject=Consulta%20desde%20la%20Landing%20ChatTDP">
+                 Enviar mensaje
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pie -->
+      <div class="mt-4 text-muted small">
+        <p class="mb-0">Horario de atención: Lun–Vie, 10:00–19:00 (GMT-6).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEO: Organization JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Whistle Time",
+  "url": "https://whistletime.com.mx",
+  "logo": "{{ site.url }}{{ '/assets/images/companies/icon_whistle_time.png' | relative_url }}",
+  "contactPoint": [{
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "email": "admin@whistletime.com.mx",
+    "telephone": "+52-33-2220-6205",
+    "areaServed": "MX",
+    "availableLanguage": ["es", "en"]
+  },{
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "telephone": "+52-33-3101-8527",
+    "areaServed": "MX",
+    "availableLanguage": ["es", "en"]
+  }]
+}
+</script>
