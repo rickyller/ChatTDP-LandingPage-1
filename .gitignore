@@ -1,11 +1,25 @@
-_site
+# build/output que SÍ queremos ignorar
+node_modules/
+_site/
+assets/bundles/
 .sass-cache
+.jekyll-cache
 .jekyll-metadata
-node_modules
-assets
+
+# archivos varios
 yarn-error.log
 .yarnclean
-
-# editors
+.DS_Store
 .idea
-.jekyll-cache
+
+# --- Asegurar que versionamos estos ---
+!_layouts/
+!_layouts/**
+
+!_includes/
+!_includes/**
+
+!assets/
+!assets/app.scss
+!assets/images/**
+!assets/docs/**
